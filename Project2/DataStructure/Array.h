@@ -16,7 +16,7 @@ struct Array {
 		length = n;
 		data = new int[length];
 
-		for (int i = 0; i < length; i++) {
+		for (UINT i = 0; i < length; i++) {
 			((int*)data)[i] = i;//배열 생성시 해당 인덱스 번호의 숫자를 데이터로 넣어줌
 		}
 	}

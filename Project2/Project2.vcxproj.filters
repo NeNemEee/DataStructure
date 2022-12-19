@@ -35,5 +35,8 @@
     <ClInclude Include="DataStructure\Node.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="DataStructure\DoublyLinkedList.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

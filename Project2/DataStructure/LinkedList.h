@@ -1,23 +1,31 @@
 #pragma once
 /*
 * 크기가 가변적
+* 선형구조
+* 구조 변경시 효율성이 좋음
 * 
 * 데이터 삭제시 데이터 연결 재구성
 * 포인터를 위한 별도의 저장공간이 필요
 * 탐색시 O(n)
+* 
+* ex)브라우저의 뒤로가기 앞으로가기 등
 */
 template <typename T>
 class LinkedList {
 public:
-	LinkedList(T data);
+	LinkedList();
 	~LinkedList();
 
 public:
-	void Add(T data);
-	void Add(UINT idx, T data);
-	void Delete(UINT idx);
-	T& GetData(UINT idx);
-	void AllPrint();
+	void Pushback(const T& data);
+	void Insert(const T& data, const UINT& idx);
+
+	void PopBack();
+	void Delete(const UINT& idx);
+
+	T At(const UINT& idx);
+
+	UINT GetLength() const { return length; };
 	bool Check(UINT idx);
 
 private:
@@ -27,10 +35,8 @@ private:
 };
 
 template<typename T>
-inline LinkedList<T>::LinkedList(T data)
+inline LinkedList<T>::LinkedList()
 {
-	first = new Node<T>(data);
-	length++;
 }
 
 template<typename T>
@@ -44,104 +50,115 @@ inline LinkedList<T>::~LinkedList()
 }
 
 template<typename T>
-inline void LinkedList<T>::Add(T data)
+inline void LinkedList<T>::Pushback(const T& data)
 {
-	if (length == 0) {
+	if (first == nullptr) {
 		first = new Node<T>(data);
+		first->data = data;
 		length++;
 		return;
 	}
 
-	Node<T>* temp = first;
-	while (true) {
-		if (temp->next == nullptr) {
-			break;
-		}
-
-		temp = temp->next;
+	Node<T>* node = first;
+	for (UINT i = 0; i < length-1; i++) {
+		node = node->next;
 	}
-
-	Node<T>* tempp = new Node<T>(data);
-	temp->next = tempp;
+	node->next = new Node<T>(data);
 	length++;
+
+	return;
 }
 
 template<typename T>
-inline void LinkedList<T>::Add(UINT idx, T data)
+inline void LinkedList<T>::Insert(const T& data, const UINT& idx)
 {
-
-	if (length == 0) {
-		first = new Node<T>(data);
-		length++;
+	if (!Check(idx)) {
+		printf("Insert Fail\n");
 		return;
 	}
 
-	if (!Check(idx)) {
-		return;
-	}
-
-	Node<T>* temp = first;
-	for (int i = 0; i < idx; i++) {
-		temp = temp->next;
-	}
-
-	if (temp->next != nullptr) {
-		Node<T>* tempp = temp->next;
-		Node<T>* temppp = new Node<T>(data);
-		temppp->next = tempp;
-		temp->next = temppp;
-	}
-	else {
-		Node<T>* tempp = new Node<T>(data);
-		temp->next = tempp;
-	}
-
-	length++;
-}
-
-template<typename T>
-inline void LinkedList<T>::Delete(UINT idx)
-{
-	if (!Check(idx)) {
-		return;
-	}
-
-	Node<T>* temp = first;
-	for (int i = 0; i < idx - 1; i++) {
-		temp = temp->next;
-	}
-
-	Node<T>* tempp = temp->next->next;
-	temp->next->isDelete = false;
-	delete temp->next;
-	temp->next = tempp;
-	length--;
-}
-
-template<typename T>
-inline T& LinkedList<T>::GetData(UINT idx)
-{
-	if (!Check(idx)) {
-		return nullptr;
-	}
-	Node<T>* temp = first;
+	Node<T>* node = first;
 	for (UINT i = 0; i < idx; i++) {
-		temp = temp->next;
+		node = node->next;
 	}
 
-	return temp->data;
+	Node<T>* temp = node->next;
+	Node<T>* tempp = new Node<T>(data);
+	tempp->data = data;
+	tempp->next = temp;
+	node->next = tempp;
+	length++;
+
+	return;
 }
 
+template<typename T>
+inline void LinkedList<T>::PopBack()
+{
+	if (first == nullptr) {
+		printf("Pop Fail\n");
+		return;
+	}
 
+	if (length == 1) {
+		delete first;
+		first = nullptr;
+		length = 0;
+
+		return;
+	}
+
+	Node<T>* node = first;
+	for (UINT i = 0; i < length-1; i++) {
+		node = node->next;
+	}
+
+	Node<T>* temp = node->next;
+	delete temp;
+	temp = nullptr;
+	node->next = nullptr;
+	length--;
+
+	return;
+}
 
 template<typename T>
-inline void LinkedList<T>::AllPrint()
+inline void LinkedList<T>::Delete(const UINT& idx)
 {
-	Node<T>* temp = first;
-	for (int i = 0; i < length; i++) {
-		cout << temp->data << endl;
-		temp = temp->next;
+	if (!Check(idx)) {
+		printf("Delete Fail\n");
+		return;
 	}
+
+	Node<T>* node = first;
+	for (UINT i = 0; i < idx - 2; i++) {
+		node = node->next;
+	}
+	Node<T>* temp = node->next->next;
+	Node<T>* tempp = node->next;
+	delete tempp;
+	tempp = nullptr;
+	node->next = temp;
+	length--;
+
+	return;
+}
+
+template<typename T>
+inline T LinkedList<T>::At(const UINT& idx)
+{
+	if (!Check(idx)) {
+		printf("At Fail\n");
+		return 1;
+	}
+
+	Node<T>* node = first;
+	for (UINT i = 0; i < idx; i++) {
+		node = node->next;
+	}
+
+	return node->data;
+	
 }
 
 template<typename T>

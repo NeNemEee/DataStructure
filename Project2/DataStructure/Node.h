@@ -11,8 +11,9 @@ public:
 	~Node();
 
 	T data;
-	Node<T>* next;
-	bool isDelete = false;
+	Node<T>* next = nullptr;
+	Node<T>* prev = nullptr;
+	bool isDelete = false; // LinkedList 전체 삭제 시 다음 것을 연속해서 지울지 판별하는 bool 변수
 };
 
 template<typename T>
@@ -22,14 +23,16 @@ inline Node<T>::Node(T data)
 	next = nullptr;
 }
 
+
 template<typename T>
 inline Node<T>::~Node()
 {
-	cout << data << endl;
+	
 	if (isDelete && next != nullptr) {
-		next->isDelete = isDelete;
+		next->isDelete = true;
 		delete next;
 		next = nullptr;
+		prev = nullptr;
 	}
 }
 
