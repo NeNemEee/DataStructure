@@ -27,7 +27,6 @@ inline Node<T>::Node(T data)
 template<typename T>
 inline Node<T>::~Node()
 {
-	
 	if (isDelete && next != nullptr) {
 		next->isDelete = true;
 		delete next;
