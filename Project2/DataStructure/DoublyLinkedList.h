@@ -203,7 +203,7 @@ inline void DoublyLinkedList<T>::Delete(const UINT& idx)
 	delete node;
 	node = nullptr;
 	length--;
-
+	
 	return;
 }
 

@@ -23,22 +23,38 @@ int main() {
 	//}
 	//delete list;
 
-	DoublyLinkedList<int>* list = new DoublyLinkedList<int>();
+	//DoublyLinkedList<int>* list = new DoublyLinkedList<int>();
 
-	list->Pushback(5);
-	list->Pushback(10);
-	list->PushFront(1);
-	list->PushFront(-1);
-	list->Delete(1);
+	//list->Pushback(5);
+	//list->Pushback(10);
+	//list->PushFront(1);
+	//list->PushFront(-1);
+	//list->Delete(1);
 
-	list->PopBack();
+	//list->PopBack();
 
-	for (int i = 0; i < list->GetLength(); i++) {
-		cout<<list->At(i)<<endl;
-	}
+	//for (int i = 0; i < list->GetLength(); i++) {
+	//	cout<<list->At(i)<<endl;
+	//}
 
-	delete list;
-	list = nullptr;
+	//delete list;
+	//list = nullptr;
+
+	Stack<int>* stack = new Stack<int>();
+	stack->Push(-1);
+	stack->Push(100);
+	stack->Push(1);
+	stack->Push(-999);
+
+	stack->Print();
+	printf("--------------\n");
+
+	stack->Pop();
+
+	cout << stack->Top() << endl;
+
+	delete stack;
+	stack = nullptr;
 
 	return 0;
 }

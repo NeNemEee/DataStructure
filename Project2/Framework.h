@@ -9,3 +9,4 @@ typedef unsigned int UINT;
 #include "DataStructure/Node.h"
 #include "DataStructure/LinkedList.h"
 #include "DataStructure/DoublyLinkedList.h"
+#include "DataStructure/Stack.h"
