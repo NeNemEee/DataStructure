@@ -44,5 +44,8 @@
     <ClInclude Include="DataStructure\Queue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="DataStructure\CircleQueue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

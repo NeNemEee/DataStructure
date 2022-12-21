@@ -58,7 +58,7 @@ int main() {
 
 	//return 0;
 
-	Queue<int>* queue = new Queue<int>();
+	CircleQueue<int>* queue = new CircleQueue<int>();
 
 	queue->Push(1);
 	queue->Push(2);

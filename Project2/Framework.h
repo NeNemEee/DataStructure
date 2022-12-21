@@ -11,3 +11,4 @@ typedef unsigned int UINT;
 #include "DataStructure/DoublyLinkedList.h"
 #include "DataStructure/Stack.h"
 #include "DataStructure/Queue.h"
+#include "DataStructure/CircleQueue.h"

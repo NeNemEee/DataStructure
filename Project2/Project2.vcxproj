@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStructure\Array.h" />
+    <ClInclude Include="DataStructure\CircleQueue.h" />
     <ClInclude Include="DataStructure\DoublyLinkedList.h" />
     <ClInclude Include="DataStructure\LinkedList.h" />
     <ClInclude Include="DataStructure\Node.h" />
