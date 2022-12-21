@@ -143,6 +143,7 @@
     <ClInclude Include="DataStructure\DoublyLinkedList.h" />
     <ClInclude Include="DataStructure\LinkedList.h" />
     <ClInclude Include="DataStructure\Node.h" />
+    <ClInclude Include="DataStructure\Queue.h" />
     <ClInclude Include="DataStructure\Stack.h" />
     <ClInclude Include="Framework.h" />
   </ItemGroup>
